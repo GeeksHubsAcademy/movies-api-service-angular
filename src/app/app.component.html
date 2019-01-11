@@ -1,4 +1,6 @@
-<section class="movies">
+<section *ngIf="!data.results">LOADING DATA... PLEASE WAIT</section>
+
+<section class="movies" *ngIf="data.results">
   <div class="movie" *ngFor="let movie of data.results">
     <h1>{{ movie.title }}</h1>
     <img class="poster" src="{{ imgDomain + movie.poster_path }}" alt="" />
