@@ -1,9 +1,14 @@
-<section *ngIf="!data">
-  <button (click)="loadPopularMovies()">Load popular movies</button> <button (click)="loadTrendingMovies()">Load trending movies</button>
+<section class="center">
+  <button (click)="loadPopularMovies()">Load popular movies</button>
+
+  <button (click)="loadTrendingMovies()">Load trending movies</button>
+
+  <button *ngIf="data" (click)="clean()">Borrar</button>
 </section>
+<section class="center" *ngIf="!data">NO RESULTS</section>
 
 <section *ngIf="data">
-  <button (click)="clean()">Borrar</button>
+  <h1>{{ title }}</h1>
   <div class="movies">
     <div class="movie" *ngFor="let movie of data">
       <h1>{{ movie.title }}</h1>

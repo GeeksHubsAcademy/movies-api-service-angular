@@ -10,11 +10,13 @@ import { LoggerService } from './logger.service';
 export class AppComponent {
   imgDomain = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/';
   data: Array<object>;
+  title: string = '';
   constructor(private api: MoviesService, private logger: LoggerService) {}
   loadPopularMovies() {
     this.api.popularMovies().then((result: any) => {
       this.data = result.results;
       this.logger.log('peliculas recibidas');
+      this.title = 'Popular movies';
     });
     this.logger.log('peliculas pedidas');
   }
@@ -22,6 +24,7 @@ export class AppComponent {
     this.api.trendingMovies().then((result: any) => {
       this.data = result.results;
       this.logger.log('peliculas recibidas');
+      this.title = 'Trending movies';
     });
     this.logger.log('peliculas pedidas');
   }
