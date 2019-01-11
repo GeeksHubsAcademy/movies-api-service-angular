@@ -1,9 +1,14 @@
-<section *ngIf="!data">LOADING DATA... PLEASE WAIT</section>
+<section *ngIf="!data">
+  <button (click)="loadPopularMovies()">Load popular movies</button> <button (click)="loadTrendingMovies()">Load trending movies</button>
+</section>
 
-<section class="movies" *ngIf="data">
-  <div class="movie" *ngFor="let movie of data">
-    <h1>{{ movie.title }}</h1>
-    <img class="poster" src="{{ imgDomain + movie.poster_path }}" alt="" />
-    <!-- <img src="{{ imgDomain + movie.backdrop_path }}" alt="" /> -->
+<section *ngIf="data">
+  <button (click)="clean()">Borrar</button>
+  <div class="movies">
+    <div class="movie" *ngFor="let movie of data">
+      <h1>{{ movie.title }}</h1>
+      <img class="poster" src="{{ imgDomain + movie.poster_path }}" alt="" />
+      <!-- <img src="{{ imgDomain + movie.backdrop_path }}" alt="" /> -->
+    </div>
   </div>
 </section>
