@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MoviesService } from './movies.service';
+import { LoggerService } from './logger.service';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +9,12 @@ import { MoviesService } from './movies.service';
 })
 export class AppComponent {
   imgDomain = 'https://image.tmdb.org/t/p/w600_and_h900_bestv2/';
-  data: object = {};
-  constructor(private api: MoviesService) {
-    api.popularMovies().then(result => {
-      this.data = result;
-      console.log('peliculas recibidas');
+  data: Array<object> = [];
+  constructor(private api: MoviesService, private logger: LoggerService) {
+    api.popularMovies().then((result: any) => {
+      this.data = result.results;
+      logger.log('peliculas recibidas');
     });
-    console.log('peliculas pedidas');
+    logger.log('peliculas pedidas');
   }
 }
